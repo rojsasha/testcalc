@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".view.Viewer">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -12,6 +12,19 @@
         android:background="#99A9F6ED"
         app:layout_constraintBottom_toBottomOf="@id/gaideline2"
         app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/inputData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:layout_marginStart="12dp"
+            android:gravity="end"
+            android:textSize="30sp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="12dp"
+            android:background="@null"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/result"
@@ -53,41 +66,50 @@
                 android:id="@+id/btnAc"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:background="@drawable/bg_blu_round_button"
                 android:text="@string/ac"
-                app:layout_constraintEnd_toStartOf="@id/btnQuota"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btnNext"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btnQuota"
+                android:id="@+id/btnNext"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:background="@drawable/bg_grey_round_button"
-                android:text="@string/skob"
+                android:foreground="@drawable/ic_baseline_backspace_24"
+                android:foregroundGravity="center_vertical|center_horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnPercent"
-                app:layout_constraintStart_toEndOf="@id/btnAc" />
+                app:layout_constraintStart_toEndOf="@id/btnAc"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnPercent"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:background="@drawable/bg_grey_round_button"
                 android:text="@string/proc"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnDivide"
-                app:layout_constraintStart_toEndOf="@id/btnQuota" />
+                app:layout_constraintStart_toEndOf="@id/btnNext"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnDivide"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:background="@drawable/bg_grey_round_button"
                 android:text="@string/del"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btnPercent" />
+                app:layout_constraintStart_toEndOf="@id/btnPercent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -102,38 +124,46 @@
                 android:id="@+id/btnSeven"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:text="@string/_7"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnEight"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnEight"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:text="@string/_8"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnNine"
-                app:layout_constraintStart_toEndOf="@id/btnSeven" />
+                app:layout_constraintStart_toEndOf="@id/btnSeven"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnNine"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:text="@string/_9"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnMulti"
-                app:layout_constraintStart_toEndOf="@id/btnEight" />
+                app:layout_constraintStart_toEndOf="@id/btnEight"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnMulti"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:background="@drawable/bg_grey_round_button"
                 android:text="@string/mm"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btnNine" />
+                app:layout_constraintStart_toEndOf="@id/btnNine"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -148,38 +178,46 @@
                 android:id="@+id/btnFour"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:text="@string/_4"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnFive"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnFive"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:text="@string/_5"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnSix"
-                app:layout_constraintStart_toEndOf="@id/btnFour" />
+                app:layout_constraintStart_toEndOf="@id/btnFour"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnSix"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:text="@string/_6"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnMines"
-                app:layout_constraintStart_toEndOf="@id/btnFive" />
+                app:layout_constraintStart_toEndOf="@id/btnFive"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnMines"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:background="@drawable/bg_grey_round_button"
                 android:text="@string/mines"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btnSix" />
+                app:layout_constraintStart_toEndOf="@id/btnSix"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -194,26 +232,32 @@
                 android:id="@+id/btnOne"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:text="@string/_1"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnTwo"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnTwo"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:text="@string/_2"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnThree"
-                app:layout_constraintStart_toEndOf="@id/btnOne" />
+                app:layout_constraintStart_toEndOf="@id/btnOne"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnThree"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:text="@string/_3"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnPlus"
                 app:layout_constraintStart_toEndOf="@id/btnTwo" />
 
@@ -221,11 +265,13 @@
                 android:id="@+id/btnPlus"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:background="@drawable/bg_grey_round_button"
                 android:text="@string/plus"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btnThree" />
+                app:layout_constraintStart_toEndOf="@id/btnThree"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -240,37 +286,46 @@
                 android:id="@+id/btnZero"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:text="@string/_0"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnPoint"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnPoint"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:text="@string/bbb"
-                app:layout_constraintEnd_toStartOf="@id/btnNext"
-                app:layout_constraintStart_toEndOf="@id/btnZero" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btnQuota"
+                app:layout_constraintStart_toEndOf="@id/btnZero"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
-                android:id="@+id/btnNext"
+                android:id="@+id/btnQuota"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
+                android:text="@string/skob"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/btnEqually"
-                app:layout_constraintStart_toEndOf="@id/btnPoint" />
+                app:layout_constraintStart_toEndOf="@id/btnPoint"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/btnEqually"
                 style="@style/CalcWhiteBittons"
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:background="@drawable/bg_green_round_button"
                 android:text="@string/nnn"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btnNext" />
+                app:layout_constraintStart_toEndOf="@id/btnQuota"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
