@@ -84,7 +84,7 @@ class Model(private var viewer: Viewer) {
 
     fun rpnToAnswer(rpn: String) : String {
         var operand = String()
-        val stack = Stack<Double>()
+        val stack = Stack<Long>()
         var a = 0
         while (a < rpn.length){
             if (rpn[a] == ' '){
@@ -96,7 +96,7 @@ class Model(private var viewer: Viewer) {
                     operand += rpn[a++]
                     if (a == rpn.length)break
                 }
-                stack.push(operand.toDouble())
+                stack.push(operand.toLong())
                 operand= String()
             }
             if (getPriority(rpn[a]) > 1){
@@ -140,8 +140,10 @@ class Model(private var viewer: Viewer) {
             "Equal" -> {temp += "="
 
 
-                rpnToAnswer(temp)
-//            temp = rpn.calculate(temp).toString()
+
+            temp = rpn.calculateRpn(temp)
+
+
         }
         }
         println("number$number")
