@@ -1,5 +1,6 @@
 package com.example.yana.culculatorhome.model
 
+import android.util.Log
 import android.widget.TextView
 import com.example.yana.culculatorhome.view.Viewer
 import java.util.*
@@ -20,7 +21,7 @@ class Model(private var viewer: Viewer) {
         rpn = RPN()
     }
 
-    fun clear(){
+    fun clear() {
         inputTv?.text = ""
         resultTv?.text = ""
     }
@@ -28,13 +29,13 @@ class Model(private var viewer: Viewer) {
     fun backAction() {
         val leng = inputTv?.text?.length
         if (leng != null) {
-            if (leng > 0)inputTv?.text = inputTv?.text?.subSequence(0, 0)
+            if (leng > 0) inputTv?.text = inputTv?.text?.subSequence(0, 0)
         }
     }
 
     fun resultsCalc() {
-        val textTv = inputTv?.text.toString()
-         if (textTv.contains("*") || textTv.contains("+") ||
+        val textTv = temp//inputTv?.text.toString()
+        if (textTv.contains("*") || textTv.contains("+") ||
             textTv.contains("-") || textTv.contains("/") ||
             textTv[textTv.length - 1] == '(' || textTv[textTv.length - -1] == ')'
         ) {
@@ -50,62 +51,65 @@ class Model(private var viewer: Viewer) {
              resultTv?.text = res.toString()
         }else resultTv?.text = textTv
     }
-    fun getPriority(token: Char): Int = when (token){
+
+    fun getPriority(token: Char): Int = when (token) {
         '*', '/' -> 3
         '+', '-' -> 2
         '(' -> 1
         ')' -> -1
         else -> 0
     }
-    fun expressionRpn(expression: String) : String {
+
+    fun expressionRpn(expression: String): String {
         var currentText = String()
         val stackE = Stack<Char>()
-        for (element in expression){
+        for (element in expression) {
             val priority = getPriority(token = element)
-            if(priority == 0) currentText += element
-            if (priority == 1)stackE.push(element)
-            if (priority > 1){
+            if (priority == 0) currentText += element
+            if (priority == 1) stackE.push(element)
+            if (priority > 1) {
                 currentText += " "
-                while (!stackE.isEmpty()){
+                while (!stackE.isEmpty()) {
                     if (getPriority(stackE.peek()) >= priority) currentText
                 }
                 stackE.push(element)
             }
-            if (priority == -1){
+            if (priority == -1) {
                 currentText += " "
-                while (getPriority(token = stackE.peek()) != 1)currentText
+                while (getPriority(token = stackE.peek()) != 1) currentText
                 stackE.pop()
             }
-            while (!stackE.empty())currentText += stackE.pop()
+            while (!stackE.empty()) currentText += stackE.pop()
             currentText
         }
-        return error
+        Log.d("test", currentText)
+        return currentText
     }
 
-    fun rpnToAnswer(rpn: String) : String {
+    fun rpnToAnswer(rpn: String): String {
         var operand = String()
         val stack = Stack<Long>()
         var a = 0
-        while (a < rpn.length){
-            if (rpn[a] == ' '){
+        while (a < rpn.length) {
+            if (rpn[a] == ' ') {
                 a++
                 continue
             }
-            if (getPriority(rpn[a]) == 0){
-                while (rpn[a] != ' ' && getPriority(rpn[a]) == 0){
+            if (getPriority(rpn[a]) == 0) {
+                while (rpn[a] != ' ' && getPriority(rpn[a]) == 0) {
                     operand += rpn[a++]
-                    if (a == rpn.length)break
+                    if (a == rpn.length) break
                 }
                 stack.push(operand.toLong())
-                operand= String()
+                operand = String()
             }
-            if (getPriority(rpn[a]) > 1){
+            if (getPriority(rpn[a]) > 1) {
                 val b = stack.pop()
                 val c = stack.pop()
-                if (rpn[a] == '+')stack.push(c + b)
-                if (rpn[a] == '-')stack.push(c - b)
-                if (rpn[a] == '*')stack.push(c * b)
-                if (rpn[a] == '/')stack.push(c / b)
+                if (rpn[a] == '+') stack.push(c + b)
+                if (rpn[a] == '-') stack.push(c - b)
+                if (rpn[a] == '*') stack.push(c * b)
+                if (rpn[a] == '/') stack.push(c / b)
             }
             a++
         }
@@ -115,7 +119,7 @@ class Model(private var viewer: Viewer) {
 
 
     fun action(number: String) {
-        if (operation){
+        if (operation) {
             inputTv?.append(number)
             operation = false
         }
@@ -137,11 +141,9 @@ class Model(private var viewer: Viewer) {
             "Multi" -> temp += "*"
             "Divide" -> temp += "/"
             "Point" -> temp += "."
-            "Equal" -> {temp += "="
+            "Equal" -> {
 
-
-
-            temp = rpn.calculateRpn(temp)
+            temp = rpn.calculateRpn(temp) ?: ""
 
 
         }
@@ -150,7 +152,8 @@ class Model(private var viewer: Viewer) {
         println("temp$temp")
         viewer.update(temp)
     }
-    fun numberAction(number: String){
+
+    fun numberAction(number: String) {
         if (number == "." && inputTv?.text?.isEmpty()!!) return
         else if (number == ".") inputTv?.append(number)
         else inputTv?.append(number)
